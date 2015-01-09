@@ -1,0 +1,14 @@
+John 99 98 99 99 99 75
+Robert 89 99 100 0
+Francis 75 83 75 76 78 83 65 90
+Jacob 90 92 75 88
+William 70 66 63 0 76
+Sammy 25 59 70 88 55
+Albert 87 83 96 45 32
+Sally 70 72 80 87 79 
+Sandra 76 89 96 0
+Cassandra 99 99 100 100 0
+Alby 95 94 91 75 88
+Lola 63 79 100
+Aubrey 90 74 90 0
+Antone 50 40 80 75 29
