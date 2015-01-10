@@ -18,6 +18,10 @@ typedef map<string, Rule_Body_Collection > Grammar;
 
 vector<string> generate_sentence(const Grammar &, const string &);
 
+
+//this function reads in a grammar from the istream as well as the start_tag (eg. <sentence>).  See grammar.txt for example grammar.
+//
+//This function outputs a vector<string> that represents the random sentenct
 vector<string> create_sentence_from_grammar(istream & in, const string & start_tag){
 	std::srand(time(NULL));
 
@@ -47,6 +51,8 @@ vector<string> create_sentence_from_grammar(istream & in, const string & start_t
 	return resulting_sentence;
 }
 
+//pseudo random number generator that will return a number in the range [0, n)
+//useful for generating a random index of array.
 int nrand(int n){
 	int bucket_size = RAND_MAX / n;
 	int r;
@@ -56,14 +62,35 @@ int nrand(int n){
 	return r;
 }
 
+//returns a bool that indicates whether or not 'word' is surrounded by '<' and '>'
 bool bracketed(const string & word){
 	return word.size() != 0 && word[0] == '<' && word[word.size() - 1] == '>';
 }
 
+
+//Rule_Body_Collection == vector<Rule_Body>
+//this function simply returns a random rule_body from a number of rule_bodys
 Rule_Body get_random_rule_body_from_collection(const Rule_Body_Collection & collection){
 	return collection[nrand(collection.size())];
 }
 
+
+//Expands rule into all non-terminal symbols and stores them in the 'result' vector
+/*
+Say grammar g is:
+<A>		<B> + <B>
+<B>		<C> + x
+<C>		y
+
+If <A> was passed as the current_rule_def,
+
+after execution, the 'result' vector would equal ["y", "+", "x", "+", "y", "+", "x"]
+
+in other words,
+<A>
+is expanded to
+y + x + y + x
+*/
 void expand_rule(const Grammar & g, const Rule_Body & current_rule_def, vector<string> & result){
 
 	//loop through all of the words int the rule definition eg. <body> -> <noun> hello, world. // <noun> hello, world is the rule_body
@@ -88,6 +115,7 @@ void expand_rule(const Grammar & g, const Rule_Body & current_rule_def, vector<s
 
 }
 
+//This function takes a gramamar and start tag to create a random sentence.
 vector<string> generate_sentence(const Grammar & g, const string & start_tag){
 	Grammar::const_iterator it = g.find(start_tag);
 	if(it == g.end())

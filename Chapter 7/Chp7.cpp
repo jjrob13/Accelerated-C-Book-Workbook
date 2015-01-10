@@ -58,7 +58,7 @@ void xref_driver(){
 
 	//print all map entries
 	for(map<string, vector<int> >::const_iterator it = words_with_line_nums.begin(); it != words_with_line_nums.end(); it++){
-		cout << it->first << "\t appears on line(s): ";
+		cout << it->first << "\t appears on line" << (!(it->second).empty() ? "s" : "") << "\t";
 
 		//print line numbers
 		for(vector<int>::const_iterator line_num_it = (it->second).begin(); line_num_it != (it->second).end(); line_num_it++){

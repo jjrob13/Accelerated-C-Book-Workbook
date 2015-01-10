@@ -1,4 +1,4 @@
-<noun>	cathttp://www.amazon.com/Eathtek-Cooling-Inspiron-064c85-MF60120V1-C040-G99/dp/B00FXIX2VS/ref=sr_1_2?ie=UTF8&qid=1420752015&sr=8-2&keywords=n7110+dell+fan
+<noun>	cat
 <noun>	dog
 <noun>	table
 <noun-phrase>	<noun>
