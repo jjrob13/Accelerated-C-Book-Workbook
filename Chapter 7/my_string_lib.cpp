@@ -1,6 +1,9 @@
 #include "my_string_lib.h"
 #include <iostream>
+#include <algorithm>
 
+
+using std::find;
 using std::cout;	using std::endl;
 using std::vector;	using std::list;
 using std::string;
@@ -112,8 +115,9 @@ map<string, vector<int> > xref(istream & in, vector<string> parse_string(const s
 
 		//add to map
 		for(vector<string>::const_iterator it = words_on_line.begin(); it != words_on_line.end(); it++){
-			//add line_num to map for specific word
-			result_map[*it].push_back(line_num);
+			//add line_num to map for specific word if it has not been previously added
+			if(find(result_map[*it].begin(), result_map[*it].end(), line_num) == result_map[*it].end())
+				result_map[*it].push_back(line_num);
 		}
 	}
 

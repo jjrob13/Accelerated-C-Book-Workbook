@@ -37,7 +37,8 @@ void print_string_int_map(map<string, int> map_to_print){
 	}
 }
 
-int main(){
+
+void grade_distribution_driver(){
 	vector<Student_info> students;
 	Student_info s;
 	while(read_student_record(cin, s)){
@@ -45,11 +46,15 @@ int main(){
 	}
 
 	print_string_int_map(get_grade_distribution(students));
+}
+
+int main(){
+	xref_driver();
 	return 0;
 }
 
 void xref_driver(){
-	map<string, vector<int> > words_with_line_nums = xref(cin, extract_urls);
+	map<string, vector<int> > words_with_line_nums = xref(cin);
 
 	//print all map entries
 	for(map<string, vector<int> >::const_iterator it = words_with_line_nums.begin(); it != words_with_line_nums.end(); it++){
