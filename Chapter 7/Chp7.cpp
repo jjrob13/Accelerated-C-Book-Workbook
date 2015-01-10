@@ -8,6 +8,10 @@
 #include <utility>
 #include <algorithm>
 #include <iterator>
+#include <iomanip>
+#include <ios>
+#include "grade.h"
+#include "Student_info.h"
 
 using std::map;		using std::cout;
 using std::endl;	using std::cin;
@@ -17,8 +21,30 @@ void map_word_count();
 void xref_driver();
 void print_grammar();
 
+void print_string_int_map(map<string, int> map_to_print){
+	//find max string key length
+	string::size_type maxlen = 0;
+
+
+	for(map<string, int>::const_iterator it = map_to_print.begin(); it != map_to_print.end(); it++){
+		maxlen = std::max(it->first.size(), maxlen);
+	}
+
+	string padding(5, ' ');
+
+	for(map<string, int>::const_iterator it = map_to_print.begin(); it != map_to_print.end(); it++){
+		cout << std::setw(maxlen) << it->first << padding << it->second << endl;
+	}
+}
+
 int main(){
-	print_grammar();
+	vector<Student_info> students;
+	Student_info s;
+	while(read_student_record(cin, s)){
+		students.push_back(s);
+	}
+
+	print_string_int_map(get_grade_distribution(students));
 	return 0;
 }
 
